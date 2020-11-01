@@ -38,12 +38,9 @@ section '.code' code readable executable
 
                 call [getch]            ;Считываем ввод символа
 
-                push NULL               ;Записываем в стек код выхода
-                call ExitProcess        ;Завершаем работу программы
+                stdcall [ExitProcess], 0;Завершаем работу программы
 
 ;____________________MAIN___________________
-
-
 
 ; Описание:
 ; Возводит число number в степень power
@@ -90,8 +87,6 @@ section '.code' code readable executable
 
         ret
 ;_____________________POW___________________
-
-
 
 ; Описание:
 ; Находит все числа Ферма меньше maxValue и выводит их в консоль.
@@ -180,7 +175,7 @@ section '.code' code readable executable
                 push eax                ;Записываем в стек pow(n)
                 call pow                ;Вызываем pow
                 add  esp, 8             ;Удаляем переданные аргументы
-                inc  eax                ;Прибавляем 1 к результату
+                inc  eax                ;прибавляем к результату 1
 
                 ;Эпилог функции
                 mov esp, ebp
